@@ -1,7 +1,12 @@
 package com.crmly.pages;
 
-public class ActivityStreamPage {
+import com.crmly.utilities.BrowserUtils;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-    // fgffhgfhg
+public class ActivityStreamPage extends Base{
+
+    @FindBy(xpath = "")
+    public WebElement pollTab;
 
 }

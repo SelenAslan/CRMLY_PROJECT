@@ -6,11 +6,18 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"classpath:features/loginfeature"},
-        glue = {"com.stepdef"}
+
+        features = "src/test/resources",
+        glue = "com/crmly/step_def",
+
+
+        tags = "@us07",
+
+
+        dryRun = true
+
 
 )
-
 
 public class CukesRunner {
 }
