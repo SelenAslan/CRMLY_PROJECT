@@ -1,6 +1,7 @@
 package com.crmly.step_def;
 
 import com.crmly.pages.ActiveStreamPage;
+import com.crmly.pages.Base;
 import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.Driver;
 import com.github.javafaker.Faker;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ActiveStreamStepDef {
+public class ActiveStreamStepDef extends Base {
 
-    ActiveStreamPage activeStreamPage = new ActiveStreamPage();
+
     Faker faker = new Faker();
     Actions actions = new Actions(Driver.getDriver());
     JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
