@@ -3,21 +3,21 @@ Feature: As a user, I should be able to use functions on
 
   Scenario: HR user types should be able to display company structure.
     Given user logins as HR user
-    When user clicks 'Employees' button from 'Configure Menu'
+    When user clicks Employees button from Configure Menu
     And verify that user is in the Company Structure Page
     Then verify Add Department option is visible
 
 
   Scenario: Helpdesk user types should be able to display company structure.
     Given user logins as Helpdesk user
-    When user clicks 'Employees' button from 'Configure Menu'
+    When user clicks Employees button from Configure Menu
     Then verify that HR user is in the Company Structure Page
 
 
 
   Scenario: Marketing user types should be able to display company structure.
     Given user logins as Marketing user
-    When user clicks 'Employees' button from 'Configure Menu'
+    When user clicks Employees button from Configure Menu
     Then verify that Marketing user is in the Company Structure Page
 
 
@@ -30,10 +30,10 @@ Feature: As a user, I should be able to use functions on
 
 
   Scenario: HR user should be able to select a parent department from the department dropdown.
-      Given HR user clicks Add Department button
-      When user selects an option from Parent dropdown
-      And verify that option displayed on the tab
-      Then user clicks Add button
+    Given HR user clicks Add Department button
+    When user selects an option from Parent dropdown
+    And verify that option displayed on the tab
+    Then user clicks Add button
 
 
   Scenario: HR user should be able to close add department pop-up at any time.
@@ -49,7 +49,7 @@ Feature: As a user, I should be able to use functions on
 
   Scenario: HR user should be able to select a Supervisor
     Given verify that user opens Add Department pop-up
-    When user selects Supervisor by clicking 'Select from structure' button
+    When user selects Supervisor by clicking Select from structure button
     And verify that selected option seen on the tab
     Then user clicks Add button
 
