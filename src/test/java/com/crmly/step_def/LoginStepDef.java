@@ -1,5 +1,6 @@
 package com.crmly.step_def;
 
+import com.crmly.pages.Base;
 import com.crmly.pages.LoginPage;
 import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.ConfigurationReader;
@@ -16,9 +17,8 @@ import org.openqa.selenium.WebElement;
 import java.util.Collection;
 import java.util.List;
 
-public class LoginStepDef {
+public class LoginStepDef extends Base {
 
-    LoginPage loginPage = new LoginPage();
 
     @Given("browser is open")
     public void browser_is_open() {
