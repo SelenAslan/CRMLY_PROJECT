@@ -203,6 +203,11 @@ for given duration
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public static boolean waitForInvisibility(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
+        return wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
     /**
      * Waits for provided element to be clickable
      *
@@ -278,6 +283,15 @@ for given duration
         }
     }
 
+    public static void verifyElementNotDisplayed(WebElement element) {
+        try {
+            Assert.assertFalse(element.isDisplayed());
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+
+        }
+    }
+
 
     /**
      * Verifies whether the element is displayed on page
@@ -294,6 +308,7 @@ for given duration
 
         }
     }
+
 
 
     /**
