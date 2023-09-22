@@ -11,10 +11,10 @@ import org.junit.runner.RunWith;
         glue = "com/crmly/step_def",
 
 
-        tags = "@us07",
+        tags = "@sln",
 
 
-        dryRun = true
+        dryRun = false
 
 
 )
