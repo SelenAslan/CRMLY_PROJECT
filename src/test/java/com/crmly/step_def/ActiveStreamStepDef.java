@@ -20,10 +20,6 @@ import java.util.List;
 import java.util.Random;
 
 public class ActiveStreamStepDef extends Base {
-
-
-    Faker faker = new Faker();
-    Actions actions = new Actions(Driver.getDriver());
     JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
     @Given("Click the Poll tab under Active Stream.")
@@ -121,6 +117,7 @@ public class ActiveStreamStepDef extends Base {
 
     @Given("The allow multiple selection checkbox appears and is verified as active.")
     public void the_allow_multiple_selection_checkbox_appears_and_is_verified_as_active() {
+        BrowserUtils.sleep(1);
         Assert.assertTrue(activeStreamPage.ASPAllowMultipleChoiceCheckbox.isDisplayed());
         Assert.assertTrue(activeStreamPage.ASPAllowMultipleChoiceCheckbox.isEnabled());
     }
