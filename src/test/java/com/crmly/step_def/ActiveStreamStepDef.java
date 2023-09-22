@@ -5,7 +5,10 @@ import com.crmly.pages.Base;
 import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.Driver;
 import com.github.javafaker.Faker;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -152,4 +155,19 @@ public class ActiveStreamStepDef extends Base {
         }
     }
 
+    @When("user clicks profile menu")
+    public void userClicksProfileMenu() {
+        activeStreamPage.profileMenu.click();
+        BrowserUtils.sleep(2);
+    }
+
+    @And("user logout button")
+    public void userLogoutButton() {
+        activeStreamPage.logoutButton.click();
+        BrowserUtils.sleep(1);
+    }
+
+    @Then("user should navigate back to login page")
+    public void userShouldNavigateBackToLoginPage() {
+    }
 }

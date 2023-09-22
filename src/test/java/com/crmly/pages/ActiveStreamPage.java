@@ -60,6 +60,12 @@ public class ActiveStreamPage extends Base{
     @FindBy(xpath = "//*[text()='The message title is not specified']")
     public WebElement ASPRequiredFieldTextAlert;
 
+    @FindBy(xpath = "//span[@id='user-name']")
+    public WebElement profileMenu;
+
+    @FindBy(xpath = "//span[contains(text(),'Log out')]")
+    public WebElement logoutButton;
+
     public void randomPerson(){
 
         List<String> empAndDepartList = new ArrayList<>();
