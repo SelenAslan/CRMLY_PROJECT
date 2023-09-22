@@ -51,6 +51,7 @@ public class LoginStepDef extends Base {
     public void go_to(String requestedUrl) {
         Driver.getDriver().get(ConfigurationReader.getProperty(requestedUrl));
     }
+
     @Given("Valid username {string}, password {string} information is entered and the sign In button is clicked.")
     public void valid_username_password_information_is_entered_and_the_sign_in_button_is_clicked(String mail, String pass) {
         loginPage.userMailTextBoxWrite(ConfigurationReader.getProperty(mail));

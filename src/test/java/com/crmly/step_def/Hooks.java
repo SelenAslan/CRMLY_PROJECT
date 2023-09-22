@@ -10,14 +10,15 @@ import org.openqa.selenium.TakesScreenshot;
 public class Hooks {
 
     @After
-    public void tearDown(Scenario scenario) {
-
+    public void teardownScenario(Scenario scenario) {
 
         if (scenario.isFailed()) {
-            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "screenshots");
-            Driver.closeDriver();
+            byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", scenario.getName());
         }
+
+        Driver.closeDriver();
+        System.out.println("After hook close driver");
 
     }
 }
