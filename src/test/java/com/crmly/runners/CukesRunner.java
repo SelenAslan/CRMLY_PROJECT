@@ -11,14 +11,13 @@ import org.junit.runner.RunWith;
         glue = "com/crmly/step_def",
 
 
-        tags = "@GZD",
+        tags = "@sln",
 
 
-        dryRun = true
+        dryRun = false
 
 
 )
 
 public class CukesRunner {
-
 }
