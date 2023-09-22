@@ -116,8 +116,8 @@ public class ActivityStream_Task_StepDef extends Base {
           BrowserUtils.waitForVisibility(activityStreamTaskPage.taskCreatedPopup, 10);
     }
 
-    @Given("Task is created successfully")
-    public void task_is_created_successfully() {
+    @Given("Task should be created successfully")
+    public void task_should_be_created_successfully() {
         activityStreamTaskPage.taskCreatedPopup.isDisplayed();
         BrowserUtils.waitFor(2);
     }
@@ -158,8 +158,8 @@ public class ActivityStream_Task_StepDef extends Base {
     }
 
 
-    @Given("Enter a description for the task")
-    public void Enter_A_Description_For_The_Task() {
+    @Given("HR user enters a description for the task")
+    public void HR_user_enters_A_Description_For_The_Task() {
 
         Driver.getDriver().switchTo().frame(activityStreamTaskPage.taskDescription);
 
