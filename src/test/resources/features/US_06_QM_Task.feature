@@ -1,4 +1,4 @@
-@Task
+@REM-1892
 Feature: As a user, I should be able to assign tasks under the Quick Navigate Menu.
 
   Background: Login and click Task link under the Quick Navigation Menu
@@ -7,7 +7,7 @@ Feature: As a user, I should be able to assign tasks under the Quick Navigate Me
     * HR user lands on Activity stream page
     * HR User clicks TASK link under the Quick Navigation Menu
 
-
+  @REM-1887
   Scenario: HR User should provide a Task name and Responsible person
     * Task name and Responsible person is mandatory
     * HR user types a Task name
@@ -16,6 +16,7 @@ Feature: As a user, I should be able to assign tasks under the Quick Navigate Me
     * HR user clicks the Send button
     * Task should be created successfully
 
+  @REM-1888
   Scenario:  HR User should be able to create "High priority" tasks with the mandatory fields.
     * HR user types a Task name
     * HR user enters a description for the task
@@ -24,6 +25,7 @@ Feature: As a user, I should be able to assign tasks under the Quick Navigate Me
     * HR user clicks the Send button
     * Task should be created successfully
 
+  @REM-1889
   Scenario:  HR User should be able to assign a task to more than one user
     * HR user types a Task name
     * HR user enters a description for the task
@@ -32,6 +34,7 @@ Feature: As a user, I should be able to assign tasks under the Quick Navigate Me
     * HR user clicks the Send button
     * Task should be created successfully
 
+  @REM-1890
   Scenario:  Checklist should be able to be added while creating a task.
     * HR user types a Task name
     * HR user enters a description for the task
@@ -42,6 +45,7 @@ Feature: As a user, I should be able to assign tasks under the Quick Navigate Me
     * HR user clicks the Send button
     * Task should be created successfully
 
+  @REM-1891
   Scenario: Deadline should be able to be added while creating a task.
     * HR user types a Task name
     * HR user enters a description for the task
