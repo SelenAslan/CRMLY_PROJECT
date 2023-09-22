@@ -13,8 +13,6 @@ import java.util.Random;
 
 public class ActiveStreamPage extends Base {
 
-    Actions actions = new Actions(Driver.getDriver());
-    Random random = new Random();
     @FindBy(xpath = "//*[text()='Poll']")
     public WebElement pollTab;
     @FindBy(xpath = "//*[text()='Add more']")
