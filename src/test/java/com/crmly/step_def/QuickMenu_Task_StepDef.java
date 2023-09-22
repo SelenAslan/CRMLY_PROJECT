@@ -1,6 +1,6 @@
 package com.crmly.step_def;
 
-import com.crmly.pages.ActivityStream_Task_Page;
+import com.crmly.pages.QuickMenu_Task_Page;
 import com.crmly.pages.Base;
 import com.crmly.pages.LoginPage;
 import com.crmly.utilities.BrowserUtils;
@@ -12,9 +12,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ActivityStream_Task_StepDef extends Base {
+public class QuickMenu_Task_StepDef extends Base {
 
-    ActivityStream_Task_Page activityStreamTaskPage = new ActivityStream_Task_Page();
+    QuickMenu_Task_Page activityStreamTaskPage = new QuickMenu_Task_Page();
     LoginPage loginPage = new LoginPage();
 
 

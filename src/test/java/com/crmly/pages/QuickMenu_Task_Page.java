@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ActivityStream_Task_Page extends Base {
+public class QuickMenu_Task_Page extends Base {
 
-    public ActivityStream_Task_Page() {
+    public QuickMenu_Task_Page() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
