@@ -10,6 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -158,7 +159,7 @@ public class ActiveStreamStepDef extends Base {
     @When("user clicks profile menu")
     public void userClicksProfileMenu() {
         activeStreamPage.profileMenu.click();
-        BrowserUtils.sleep(2);
+        BrowserUtils.sleep(1);
     }
 
     @And("user logout button")
@@ -169,5 +170,10 @@ public class ActiveStreamStepDef extends Base {
 
     @Then("user should navigate back to login page")
     public void userShouldNavigateBackToLoginPage() {
+        BrowserUtils.verifyTitle("Authorization");
+        BrowserUtils.verifyURLContains("auth");
+        BrowserUtils.sleep(1);
+        Driver.getDriver().quit();
     }
+
 }
