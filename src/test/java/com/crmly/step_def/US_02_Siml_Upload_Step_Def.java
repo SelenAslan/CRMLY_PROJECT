@@ -1,34 +1,29 @@
 package com.crmly.step_def;
 
-import com.crmly.pages.US_02_LoginPage;
 import com.crmly.pages.US_02_PortalPage;
-import com.crmly.utilities.ConfigurationReader;
 import com.crmly.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class US_02_Siml_Upload_Step_Def {
-    US_02_LoginPage US02LoginPage = new US_02_LoginPage();
     US_02_PortalPage US02PortalPage = new US_02_PortalPage();
-
-
-    @Given("User is on the portal page")
-    public void user_is_on_the_portal_page() {
-        String actualTitle = Driver.getDriver().getTitle();
-        String expectedTitle = "(2) Portal";
-        Assert.assertEquals(actualTitle, expectedTitle);
-    }
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 
     @Given("User clicks message button")
     public void user_clicks_message_button() {
+        wait.until(ExpectedConditions.elementToBeClickable(US02PortalPage.spanSendMessage));
         US02PortalPage.spanSendMessage.click();
 
     }
 
-    @Given("User clicks upload files button")
+    @And("User clicks upload files button")
     public void user_clicks_upload_files_button() {
+        wait.until(ExpectedConditions.elementToBeClickable(US02PortalPage.spanUploadfileBlogPostForm));
         US02PortalPage.spanUploadfileBlogPostForm.click();
     }
 
