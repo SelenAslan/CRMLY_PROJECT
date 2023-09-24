@@ -170,7 +170,7 @@ public class ActiveStreamStepDef extends Base {
 
     @Then("user should navigate back to login page")
     public void userShouldNavigateBackToLoginPage() {
-        BrowserUtils.verifyTitle("Authorization");
+        Assert.assertEquals(Driver.getDriver().getTitle(), "Authorization");
         BrowserUtils.verifyURLContains("auth");
         BrowserUtils.sleep(1);
         Driver.getDriver().quit();
