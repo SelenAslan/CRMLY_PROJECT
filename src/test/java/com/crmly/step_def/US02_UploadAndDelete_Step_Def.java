@@ -11,7 +11,7 @@ import org.junit.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
-public class US2_Step_Def {
+public class US02_UploadAndDelete_Step_Def {
 
     US_02_PortalPage US02PortalPage = new US_02_PortalPage();
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 15);
