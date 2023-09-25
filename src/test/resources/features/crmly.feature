@@ -56,5 +56,5 @@ Feature: As a user, I should be able to add link, insert video, mention, quote, 
     * The person to whom it will be is added
     * The tags are verified to be deleted before the message is sent
     * The added tag is sent
-    * User closes page.
+    * User closes page
 
