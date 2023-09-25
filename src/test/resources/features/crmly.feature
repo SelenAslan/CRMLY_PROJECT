@@ -4,13 +4,14 @@ Feature: As a user, I should be able to add link, insert video, mention, quote, 
     * Go to "UserURL".
     * Valid username "MarketingMail", password "Password" information is entered and the sign In button is clicked.
 
-    @1837
+    @Smoke
   Scenario: User should be able to add mentions
     * Click on the Message button
     * Message is written and the send button is clicked
     * Verifying that the message was sent
     * User closes page.
 
+    @Smoke
   Scenario:  User should be able to attach a link to the specified text.
     * Click on the Link button in the message section
     * Link is added and saved
@@ -24,7 +25,8 @@ Feature: As a user, I should be able to add link, insert video, mention, quote, 
     * Add any youtube URL and click on the Save button
     * Verifying that the video has been added
     * User closes page.
-  @Rem-1837
+
+
   Scenario: User should be able to cancel links and videos before sending the message
     * Click on the Link button in the message section
     * Link is added and saved
@@ -41,19 +43,18 @@ Feature: As a user, I should be able to add link, insert video, mention, quote, 
     *  Verify that the requested connection is working
     *  User closes page.
 
-@GZD
+
   Scenario: User should be able to add tags to messages.
     * The message button the user clicks on the add tag button below it The tag message is added
-    * The person to whom it will be sent is added
-    * Message is written and the send button is clicked
+    * The person to whom it will be is added
+    * The added tag is sent
     * Verify that the requested connection is working
     * User closes page.
 
   Scenario: User should be able to remove tags before sending the message
     * The message button the user clicks on the add tag button below it The tag message is added
-    * The person to whom it will be sent is added
-    * Message is written
-    * Before sending the message the user clicks the cross icon next to the tag to remove the tag and send the message
-    * Verify that the requested connection is working
+    * The person to whom it will be is added
+    * The tags are verified to be deleted before the message is sent
+    * The added tag is sent
     * User closes page.
 

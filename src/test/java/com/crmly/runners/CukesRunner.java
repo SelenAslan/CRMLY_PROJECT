@@ -10,8 +10,9 @@ import org.junit.runner.RunWith;
         features = "src/test/resources",
         glue = "com/crmly/step_def",
 
+        tags = "@Smoke",
 
-        tags = "@sln",
+       
 
 
         dryRun = false
@@ -20,4 +21,5 @@ import org.junit.runner.RunWith;
 )
 
 public class CukesRunner {
+
 }
