@@ -21,7 +21,6 @@ Feature: As a user, I should be able to assign tasks under the Quick Navigate Me
     * HR user types a Task name
     * HR user enters a description for the task
     * HR user clicks and checks the High Priority check box
-    * HR user clicks Add more button to add 1 responsible person
     * HR user clicks the Send button
     * Task should be created successfully
 
@@ -41,7 +40,6 @@ Feature: As a user, I should be able to assign tasks under the Quick Navigate Me
     * HR user clicks and checks the High Priority check box
     * HR User clicks Checklist link
     * HR user enters some text into Things to do field and confirm
-    * HR user clicks Add more button to add 2 responsible person
     * HR user clicks the Send button
     * Task should be created successfully
 
