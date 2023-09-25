@@ -49,13 +49,18 @@ public class QuickMenu_Task_StepDef extends Base {
 
     @Given("Task name and Responsible person is mandatory")
     public void Task_Name_And_Responsible_Person_Is_Mandatory() {
+
+        activityStreamTaskPage.taskName.sendKeys("TESTING WITHOUT A TASK NAME");
+        BrowserUtils.waitFor(1);
+        activityStreamTaskPage.taskName.clear();
+
         activityStreamTaskPage.sendButton.click();
         String expectedTaskNameError = "The task name is not specified.";
         String actualTaskNameError = activityStreamTaskPage.taskErrorMessage.getText();
         Assert.assertEquals(expectedTaskNameError, actualTaskNameError);
-        Driver.getDriver().navigate().refresh();
 
-        activityStreamTaskPage.taskName.sendKeys("TASK TITLE");
+        BrowserUtils.waitFor(1);
+        activityStreamTaskPage.taskName.sendKeys("TESTING WITHOUT RESPONSIBLE PERSON");
         activityStreamTaskPage.deleteResponsiblePerson.click();
         activityStreamTaskPage.sendButton.click();
 
@@ -63,15 +68,15 @@ public class QuickMenu_Task_StepDef extends Base {
                 "found.";
         String actualNoneResponsiblePersonMessage   = activityStreamTaskPage.taskErrorMessage.getText();
         Assert.assertEquals(expectedNoneResponsiblePersonMessage, actualNoneResponsiblePersonMessage);
-        Driver.getDriver().navigate().refresh();
+
     }
 
     @Given("HR user types a Task name")
     public void hr_user_types_a_task_name() {
 
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(1);
         activityStreamTaskPage.taskName.clear();
-        activityStreamTaskPage.taskName.sendKeys("TASK TITLE");
+        activityStreamTaskPage.taskName.sendKeys("TESTING WITH MANDATORY FIELDS");
     }
 
     @Given("HR user clicks and checks the High Priority check box")
@@ -87,9 +92,7 @@ public class QuickMenu_Task_StepDef extends Base {
         activeStreamPage.employeesAndDepartmentsLink.click();
         BrowserUtils.sleep(1);
 
-        for (int i = 0; i < quantity; i++) {
-            activeStreamPage.randomPerson();
-        }
+        activeStreamPage.randomPerson(quantity);
 
         activityStreamTaskPage.taskButton.click();
     }
@@ -99,13 +102,11 @@ public class QuickMenu_Task_StepDef extends Base {
 
         BrowserUtils.waitForClickablility(activityStreamTaskPage.addMoreButton, 10);
         activityStreamTaskPage.addMoreButton.click();
-        BrowserUtils.waitForVisibility(activeStreamPage.employeesAndDepartmentsLink, 10);
+        BrowserUtils.waitForClickablility(activeStreamPage.employeesAndDepartmentsLink, 10);
         activeStreamPage.employeesAndDepartmentsLink.click();
         BrowserUtils.sleep(1);
 
-        for (int i = 0; i < quantity; i++) {
-                activeStreamPage.randomPerson();
-        }
+        activeStreamPage.randomPerson(quantity);
 
         activityStreamTaskPage.taskButton.click();
     }
