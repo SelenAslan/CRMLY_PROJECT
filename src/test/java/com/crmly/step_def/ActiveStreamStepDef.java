@@ -22,6 +22,10 @@ import java.util.List;
 import java.util.Random;
 
 public class ActiveStreamStepDef extends Base {
+
+
+    Faker faker = new Faker();
+    Actions actions = new Actions(Driver.getDriver());
     JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
     @Given("Click the Poll tab under Active Stream.")
@@ -317,6 +321,7 @@ public class ActiveStreamStepDef extends Base {
     }
     @Given("Verifying that the message was sent")
     public void verifying_that_the_message_was_sent() {
+        BrowserUtils.sleep(2);
         Assert.assertTrue(activeStreamPage.ASPMessageTextElement.isDisplayed());
     }
     @Given("Verified ability to add a link to specified text")
@@ -347,7 +352,18 @@ public class ActiveStreamStepDef extends Base {
         activeStreamPage.ASPMessageText.sendKeys("Hi Team");
         Driver.getDriver().switchTo().parentFrame();
         BrowserUtils.sleep(2);
+    }
 
+    @Given("The added tag is sent")
+    public void  The_added_tag_is_sent(){
+        activeStreamPage.ASPSendQuote.click();
+        BrowserUtils.sleep(2);
+
+        try {
+            Assert.assertFalse(activeStreamPage.ASPMessageToCloseX.isDisplayed());
+        } catch (Exception e) {
+            System.out.println("Successfully");
+        }
     }
 
 

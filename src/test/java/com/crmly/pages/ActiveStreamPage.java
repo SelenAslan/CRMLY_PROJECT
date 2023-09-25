@@ -205,6 +205,12 @@ public class ActiveStreamPage extends Base {
     @FindBy(xpath = "//*[@class='feed-add-post-tags']")
     public WebElement ASPTagAdd;
 
+    @FindBy(xpath = "(//*[@class='bx-finder-box-item-t7-name'])[2]")
+    public WebElement ASPMessageTagAddLink;
+    @FindBy(xpath = "(//*[@class='feed-add-post-del-but'])[2]")
+    public WebElement ASPMessageToCloseX;
+    @FindBy(xpath = "(//*[@class='feed-add-post-del-but'])[3]")
+    public WebElement ASPMessageTagCloseX;
     @FindBy(xpath = "//span[@id=\'user-name\']")
     public WebElement profileMenu;
 
