@@ -5,12 +5,11 @@ import com.crmly.pages.Base;
 import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.Driver;
 import com.github.javafaker.Faker;
-import io.cucumber.java.en.And;
+import com.google.common.base.Verify;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import org.apache.hc.core5.http.Message;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -21,10 +20,6 @@ import java.util.List;
 import java.util.Random;
 
 public class ActiveStreamStepDef extends Base {
-
-
-    Faker faker = new Faker();
-    Actions actions = new Actions(Driver.getDriver());
     JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
     @Given("Click the Poll tab under Active Stream.")
@@ -122,6 +117,7 @@ public class ActiveStreamStepDef extends Base {
 
     @Given("The allow multiple selection checkbox appears and is verified as active.")
     public void the_allow_multiple_selection_checkbox_appears_and_is_verified_as_active() {
+        BrowserUtils.sleep(1);
         Assert.assertTrue(activeStreamPage.ASPAllowMultipleChoiceCheckbox.isDisplayed());
         Assert.assertTrue(activeStreamPage.ASPAllowMultipleChoiceCheckbox.isEnabled());
     }
@@ -154,26 +150,206 @@ public class ActiveStreamStepDef extends Base {
         for (int i = 0; i < quantity; i++) {
             activeStreamPage.randomPerson();
         }
+
+
     }
 
-    @When("user clicks profile menu")
-    public void userClicksProfileMenu() {
-        activeStreamPage.profileMenu.click();
-        BrowserUtils.sleep(1);
+    @Given("Click on the Message button")
+    public void click_on_the_button() {
+        activeStreamPage.ASPMessageButton.click();
+        BrowserUtils.sleep(2);
+
     }
 
-    @And("user logout button")
-    public void userLogoutButton() {
-        activeStreamPage.logoutButton.click();
-        BrowserUtils.sleep(1);
+    @Given("Message is written and the send button is clicked")
+    public void Message_is_written_and_the_send_button_is_clicked() {
+        Driver.getDriver().switchTo().frame(activeStreamPage.ASPMessageIframeElement);
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPMessageText.sendKeys("hey Team");
+        Driver.getDriver().switchTo().parentFrame();
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPMessageSendButton.click();
+        BrowserUtils.sleep(2);
     }
 
-    @Then("user should navigate back to login page")
-    public void userShouldNavigateBackToLoginPage() {
-        Assert.assertEquals(Driver.getDriver().getTitle(), "Authorization");
-        BrowserUtils.verifyURLContains("auth");
-        BrowserUtils.sleep(1);
-        Driver.getDriver().quit();
+
+    @Given("Click on the Link button in the message section")
+    public void click_on_the_Link_button_in_the_message_section() {
+        activeStreamPage.ASPMessageButton.click();
+        BrowserUtils.sleep(2);
+
     }
+
+    @Given("Link is added and saved")
+    public void Link_is_added_and_saved() {
+        activeStreamPage.ASPLinkButton.click();
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPMessageAlertLinkUrl.sendKeys("google.com");
+        activeStreamPage.ASPMessageAlertSaveButton.click();
+        BrowserUtils.sleep(2);
+
+    }
+
+    @Given("Click on the send button")
+    public void Click_on_the_send_button() {
+        activeStreamPage.ASPMessageSendButton.click();
+        BrowserUtils.sleep(2);
+    }
+
+    @Given("Click on the Insert video button in the message section")
+    public void Click_on_the_Insert_video_button_in_the_message_section() {
+        activeStreamPage.ASPVideoButton.click();
+        BrowserUtils.sleep(2);
+
+    }
+
+    @Given("Add any youtube URL and click on the Save button")
+    public void Add_any_youtube_URL_and_click_on_the_Save_button() {
+        activeStreamPage.ASPVideoUrl.sendKeys("https://www.youtube.com/watch?v=qlr7eQp6eQE");
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPMessageAlertSaveButton.click();
+        BrowserUtils.sleep(1);
+
+    }
+
+    @Given("Verifying that the video has been added")
+    public void Verifying_that_the_video_has_been_added() {
+        Assert.assertTrue(activeStreamPage.ASPSuccessAddedText.isDisplayed()); //görünüyorsa
+        BrowserUtils.sleep(2);
+    }
+
+    @Given("The user writes a message and adds the link by clicking the link button at the bottom of the message")
+    public void The_user_writes_a_message_and_adds_the_link_by_clicking_the_link_button_at_the_bottom_of_the_message() {
+        activeStreamPage.ASPMessageButton.click();
+        BrowserUtils.sleep(1);
+        Driver.getDriver().switchTo().frame(activeStreamPage.ASPMessageIframeElement);
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPMessageText.sendKeys("hey Team");
+        Driver.getDriver().switchTo().parentFrame();
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPLinkButton.click();
+        activeStreamPage.ASPMessageAlertLinkUrl.sendKeys("google.com");
+        BrowserUtils.sleep(1);
+        activeStreamPage.ASPMessageAlertSaveButton.click();
+        BrowserUtils.sleep(2);
+
+
+    }
+
+    @Given("Deletes the link and clicks the send button before sending the message")
+    public void Deletes_the_link_and_clicks_the_send_button_before_sending_the_message() {
+        activeStreamPage.ASPMessageSendAndDeletes.click();
+        BrowserUtils.sleep(2);
+    }
+/*
+
+ */
+    @Given("Clicks on the message button and then clicks on the double Quote text button below it")
+    public void Clicks_on_the_message_button_and_then_clicks_on_the_double_Quote_text_button_below_it() {
+        activeStreamPage.ASPMessageButton.click();
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPQuoteText.click();
+        BrowserUtils.sleep(2);
+
+    }
+
+    @Given("User writes and sends the quote")
+    public void User_writes_and_sends_the_quote() {
+        Driver.getDriver().switchTo().frame(activeStreamPage.ASPMessageIframeElement);
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPMessageAlertQuoteText.sendKeys("Steve Jobs: The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.");
+        BrowserUtils.sleep(2);
+        Driver.getDriver().switchTo().parentFrame();
+        activeStreamPage.ASPSendQuote.click();
+        BrowserUtils.sleep(2);
+    }
+    @Given("The message button the user clicks on the add tag button below it The tag message is added")
+    public void The_message_button_the_user_clicks_on_the_add_tag_button_below_it_The_tag_message_is_added() {
+        activeStreamPage.ASPMessageButton.click();
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPAddTag.click();
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPMessageAlertAddTags.sendKeys("#important");
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPMessageAlertAdd.click();
+        BrowserUtils.sleep(1);
+
+
+    }
+    @Given("The person to whom it will be sent is added")
+    public void The_person_to_whom_it_will_be_sent_is_added() {
+        activeStreamPage.ASPMessagePeople1.click();
+        BrowserUtils.sleep(1);
+        activeStreamPage.ASPMessageToAdded.sendKeys("marketing1@cybertekschool.com");
+        BrowserUtils.sleep(3);
+
+        Driver.getDriver().switchTo().frame(activeStreamPage.ASPMessageIframeElement);
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPMessageText.sendKeys("hey Team");
+        Driver.getDriver().switchTo().parentFrame();
+        activeStreamPage.ASPSendQuote.click();
+        BrowserUtils.sleep(2);
+
+
+
+
+    }
+    @Given("Verify that the requested connection is working")
+   public void Verify_that_the_requested_connection_is_working() {
+        Assert.assertTrue(activeStreamPage.ASPMessageAlertLink1.isDisplayed());
+    }
+
+
+    @Given("Clicks the add tag button in the message section and adds the tag")
+    public void Clicks_the_add_tag_button_in_the_message_section_and_adds_the_tag(){
+        activeStreamPage.ASPAddTag.click();
+        BrowserUtils.sleep(2);
+    }
+    @Given("Before sending the message the user clicks the cross icon next to the tag to remove the tag and send the message")
+    public void Before_sending_the_message_the_user_clicks_the_cross_icon_next_to_the_tag_to_remove_the_tag_and_send_the_message () {
+        activeStreamPage.ASPTagAdd.click();
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPTagAddClose.click();
+        BrowserUtils.sleep(2);
+
+    }
+    @Given("Verifying that the message was sent")
+    public void verifying_that_the_message_was_sent() {
+        Assert.assertTrue(activeStreamPage.ASPMessageTextElement.isDisplayed());
+    }
+    @Given("Verified ability to add a link to specified text")
+    public void verified_ability_to_add_a_link_to_specified_text() {
+        Assert.assertTrue(activeStreamPage.ASPMessageAlertLinkVerify.isDisplayed());
+
+    }
+    @Given("The added link is deleted")
+    public void the_added_link_is_deleted() {
+        Driver.getDriver().switchTo().frame(activeStreamPage.ASPMessageIframeElement);
+        BrowserUtils.sleep(2);
+      //  activeStreamPage.ASPMessageText.sendKeys("hey Team");
+        activeStreamPage.ASPDeletedLinkText.sendKeys(Keys.BACK_SPACE , Keys.BACK_SPACE,Keys.BACK_SPACE,
+                Keys.BACK_SPACE, Keys.BACK_SPACE ,Keys.BACK_SPACE,Keys.BACK_SPACE,Keys.BACK_SPACE,Keys.BACK_SPACE,Keys.BACK_SPACE);
+        Driver.getDriver().switchTo().parentFrame();
+        BrowserUtils.sleep(3);
+
+    }
+    @Given("Added video is deleted")
+    public void added_video_is_deleted() {
+
+    }
+
+    @Given("Message is written")
+    public void  Message_is_written(){
+        Driver.getDriver().switchTo().frame(activeStreamPage.ASPMessageIframeElement);
+        BrowserUtils.sleep(2);
+        activeStreamPage.ASPMessageText.sendKeys("Hi Team");
+        Driver.getDriver().switchTo().parentFrame();
+        BrowserUtils.sleep(2);
+
+    }
+
+
 
 }
+
+
