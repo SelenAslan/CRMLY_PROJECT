@@ -20,6 +20,10 @@ import java.util.List;
 import java.util.Random;
 
 public class ActiveStreamStepDef extends Base {
+
+
+    Faker faker = new Faker();
+    Actions actions = new Actions(Driver.getDriver());
     JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
     @Given("Click the Poll tab under Active Stream.")
@@ -117,7 +121,6 @@ public class ActiveStreamStepDef extends Base {
 
     @Given("The allow multiple selection checkbox appears and is verified as active.")
     public void the_allow_multiple_selection_checkbox_appears_and_is_verified_as_active() {
-        BrowserUtils.sleep(1);
         Assert.assertTrue(activeStreamPage.ASPAllowMultipleChoiceCheckbox.isDisplayed());
         Assert.assertTrue(activeStreamPage.ASPAllowMultipleChoiceCheckbox.isEnabled());
     }
@@ -238,12 +241,14 @@ public class ActiveStreamStepDef extends Base {
 
     @Given("Deletes the link and clicks the send button before sending the message")
     public void Deletes_the_link_and_clicks_the_send_button_before_sending_the_message() {
-        activeStreamPage.ASPMessageSendAndDeletes.click();
+
+        activeStreamPage.ASPMessageSendAndDeletes.click( );
         BrowserUtils.sleep(2);
     }
-/*
 
- */
+
+
+
     @Given("Clicks on the message button and then clicks on the double Quote text button below it")
     public void Clicks_on_the_message_button_and_then_clicks_on_the_double_Quote_text_button_below_it() {
         activeStreamPage.ASPMessageButton.click();
@@ -276,24 +281,19 @@ public class ActiveStreamStepDef extends Base {
 
 
     }
-    @Given("The person to whom it will be sent is added")
+    @Given("The person to whom it will be is added")
     public void The_person_to_whom_it_will_be_sent_is_added() {
         activeStreamPage.ASPMessagePeople1.click();
         BrowserUtils.sleep(1);
-        activeStreamPage.ASPMessageToAdded.sendKeys("marketing1@cybertekschool.com");
+        activeStreamPage.ASPMessageTagAddLink.click();
+       // activeStreamPage.ASPMessageToAdded.sendKeys("marketing1@cybertekschool.com");
         BrowserUtils.sleep(3);
 
         Driver.getDriver().switchTo().frame(activeStreamPage.ASPMessageIframeElement);
         BrowserUtils.sleep(2);
         activeStreamPage.ASPMessageText.sendKeys("hey Team");
         Driver.getDriver().switchTo().parentFrame();
-        activeStreamPage.ASPSendQuote.click();
-        BrowserUtils.sleep(2);
-
-
-
-
-    }
+            }
     @Given("Verify that the requested connection is working")
    public void Verify_that_the_requested_connection_is_working() {
         Assert.assertTrue(activeStreamPage.ASPMessageAlertLink1.isDisplayed());
@@ -305,16 +305,17 @@ public class ActiveStreamStepDef extends Base {
         activeStreamPage.ASPAddTag.click();
         BrowserUtils.sleep(2);
     }
-    @Given("Before sending the message the user clicks the cross icon next to the tag to remove the tag and send the message")
-    public void Before_sending_the_message_the_user_clicks_the_cross_icon_next_to_the_tag_to_remove_the_tag_and_send_the_message () {
-        activeStreamPage.ASPTagAdd.click();
-        BrowserUtils.sleep(2);
-        activeStreamPage.ASPTagAddClose.click();
+    @Given("The tags are verified to be deleted before the message is sent")
+    public void The_tags_are_verified_to_be_deleted_before_the_message_is_sent () {
+        activeStreamPage.ASPMessageToCloseX.click();
+        BrowserUtils.sleep(1);
+        activeStreamPage.ASPMessageToCloseX.click();
         BrowserUtils.sleep(2);
 
     }
     @Given("Verifying that the message was sent")
     public void verifying_that_the_message_was_sent() {
+        BrowserUtils.sleep(2);
         Assert.assertTrue(activeStreamPage.ASPMessageTextElement.isDisplayed());
     }
     @Given("Verified ability to add a link to specified text")
@@ -326,13 +327,18 @@ public class ActiveStreamStepDef extends Base {
     public void the_added_link_is_deleted() {
         Driver.getDriver().switchTo().frame(activeStreamPage.ASPMessageIframeElement);
         BrowserUtils.sleep(2);
-      //  activeStreamPage.ASPMessageText.sendKeys("hey Team");
-        activeStreamPage.ASPDeletedLinkText.sendKeys(Keys.BACK_SPACE , Keys.BACK_SPACE,Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE ,Keys.BACK_SPACE,Keys.BACK_SPACE,Keys.BACK_SPACE,Keys.BACK_SPACE,Keys.BACK_SPACE);
+        activeStreamPage.ASPDeletedLinkText.clear();
+        BrowserUtils.sleep(2);
+        System.out.println("Input field cleared..!");
         Driver.getDriver().switchTo().parentFrame();
         BrowserUtils.sleep(3);
 
-    }
+
+      //  for (int i = 0; i <= 10; i++) {
+       //     activeStreamPage.ASPDeletedLinkText.sendKeys(Keys.BACK_SPACE);
+        }
+
+
     @Given("Added video is deleted")
     public void added_video_is_deleted() {
 
@@ -345,10 +351,19 @@ public class ActiveStreamStepDef extends Base {
         activeStreamPage.ASPMessageText.sendKeys("Hi Team");
         Driver.getDriver().switchTo().parentFrame();
         BrowserUtils.sleep(2);
-
     }
 
+    @Given("The added tag is sent")
+    public void  The_added_tag_is_sent(){
+        activeStreamPage.ASPSendQuote.click();
+        BrowserUtils.sleep(2);
 
+        try {
+            Assert.assertFalse(activeStreamPage.ASPMessageToCloseX.isDisplayed());
+        } catch (Exception e) {
+            System.out.println("Successfully");
+        }
+    }
 
 }
 
