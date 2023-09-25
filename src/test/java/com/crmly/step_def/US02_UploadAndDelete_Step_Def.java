@@ -1,6 +1,7 @@
 package com.crmly.step_def;
 
 import com.crmly.pages.US_02_PortalPage;
+import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.Driver;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,11 +11,13 @@ import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.io.File;
+
 
 public class US02_UploadAndDelete_Step_Def {
 
     US_02_PortalPage US02PortalPage = new US_02_PortalPage();
-    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 20);
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 15);
 
     //---------------------------------------------------------------------------------------------
     @Given("User clicks message button")
@@ -32,13 +35,17 @@ public class US02_UploadAndDelete_Step_Def {
 
     @Then("User upload files or images by one by and upload")
     public void userUploadFilesOrImagesByOneByAndUpload() throws InterruptedException {
-        String pathImg = "C:\\Users\\Taha\\IdeaProjects\\CRMLY_PROJECT\\src\\test\\resources\\US02_archive\\araba.jpeg";
-        String pathPdf = "C:\\Users\\Taha\\IdeaProjects\\CRMLY_PROJECT\\src\\test\\resources\\US02_archive\\day2.txt";
-        String pathText = "C:\\Users\\Taha\\IdeaProjects\\CRMLY_PROJECT\\src\\test\\resources\\US02_archive\\Github_Collaboration.pdf";
 
-        US02PortalPage.inputFiles.sendKeys(pathImg);
-        US02PortalPage.inputFiles.sendKeys(pathPdf);
-        US02PortalPage.inputFiles.sendKeys(pathText);
+        File uploadIMG  = new File("src/test/java/com/crmly/archive/araba.jpeg" );
+        File uploadPDF  = new File("src/test/java/com/crmly/archive/Github_Collaboration.pdf" );
+        File uploadTXT  = new File("src/test/java/com/crmly/archive/day2.txt" );
+
+
+        US02PortalPage.inputFiles.sendKeys(uploadIMG.getAbsolutePath());
+        US02PortalPage.inputFiles.sendKeys(uploadPDF.getAbsolutePath());
+        US02PortalPage.inputFiles.sendKeys(uploadTXT.getAbsolutePath());
+
+        BrowserUtils.waitFor(3);
 
         Assert.assertTrue(US02PortalPage.spanClickInsertFile1.isEnabled());
         Assert.assertTrue(US02PortalPage.spanClickInsertFile2.isEnabled());
