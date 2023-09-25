@@ -162,7 +162,7 @@ public class ActiveStreamPage extends Base {
     @FindBy(xpath = "//*[@class='bx-editor-iframe']")
     public WebElement ASPMessageIframeElement;
 
-    @FindBy(xpath = "//*[@id='blog_post_body_790']")
+    @FindBy(xpath = "//*[text()='hey Team']")
     public WebElement ASPMessageTextElement;
 
     @FindBy(xpath = "//*[@id='linkidPostFormLHE_blogPostForm-href']")
@@ -171,7 +171,7 @@ public class ActiveStreamPage extends Base {
     @FindBy(xpath = "//*[@id='undefined']")
     public WebElement ASPMessageAlertSaveButton;
 
-    @FindBy(xpath = "//*[@id='feed-post-contentview-BLOG_POST-794']")
+    @FindBy(xpath= "//*[text()='google.com']")
     public WebElement ASPMessageAlertLinkVerify;
 
     @FindBy(xpath = "//*[@class='bxhtmled-90-input']")
@@ -199,13 +199,18 @@ public class ActiveStreamPage extends Base {
     @FindBy(xpath = "//*[@class='feed-add-post-destination-text']")
     public WebElement ASPMessagePeople1;
 
-    @FindBy(xpath = "//*[@class='feed-add-post-del-but'][2]")
+    @FindBy(xpath = "(//*[@class='feed-add-post-del-but'])[2]")
     public WebElement ASPTagAddClose;
 
     @FindBy(xpath = "//*[@class='feed-add-post-tags']")
     public WebElement ASPTagAdd;
 
-
+    @FindBy(xpath = "(//*[@class='bx-finder-box-item-t7-name'])[2]")
+    public WebElement ASPMessageTagAddLink;
+    @FindBy(xpath = "(//*[@class='feed-add-post-del-but'])[2]")
+    public WebElement ASPMessageToCloseX;
+    @FindBy(xpath = "(//*[@class='feed-add-post-del-but'])[3]")
+    public WebElement ASPMessageTagCloseX;
 
 
 
