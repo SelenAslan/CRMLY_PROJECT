@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SearchAndFilterPage extends Base {
 
-    @FindBy(xpath = "//*[@id='LIVEFEED_search']")
+    @FindBy(xpath = "//input[@id='LIVEFEED_search']")
     public WebElement filterAndSearchButton;
 
     @FindBy(xpath = "//*[@data-id='work']")
@@ -32,7 +32,7 @@ public class SearchAndFilterPage extends Base {
     @FindBy(xpath = "//*[@data-name=\"DATE_CREATE_datesel\"]/span[1]")
     public WebElement yesterday;
 
-    @FindBy(xpath = "(//*[@data-name='EVENT_ID'])[2]")
+    @FindBy(xpath = "//div[@data-name='EVENT_ID']")
     public WebElement typeBox;
 
     @FindBy(xpath = "//div[.='Polls']")

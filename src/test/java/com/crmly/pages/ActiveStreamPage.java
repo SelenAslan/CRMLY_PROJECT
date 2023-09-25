@@ -84,6 +84,30 @@ public class ActiveStreamPage extends Base {
         }
     }
 
+    public void randomPerson(int numOfPerson) {
+
+        List<String> empAndDepartList = new ArrayList<>();
+
+        for (WebElement eachPerson : employeesAndDepartmenList) {
+            empAndDepartList.add(eachPerson.getText());
+        }
+
+
+        for (int i = 0; i < numOfPerson; i++) {
+            int randomIndex = random.nextInt(empAndDepartList.size());
+            String randomPerson = empAndDepartList.get(randomIndex);
+            for (WebElement person : employeesAndDepartmenList) {
+                if (person.getText().equals(randomPerson)) {
+                    actions.moveToElement(person).perform();
+                    actions.click(person).perform();
+                    //BrowserUtils.sleep(2);
+                }
+                System.out.println(randomPerson);
+            }
+        }
+
+    }
+
     public void APSEditAnswerDel() {
         APSEditAnswerTextBox.get(0).click();
         APSEditAnswerIconList.get(0).click();

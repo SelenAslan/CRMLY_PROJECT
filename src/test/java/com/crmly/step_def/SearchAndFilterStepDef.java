@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -75,7 +76,7 @@ public class SearchAndFilterStepDef {
 
     }
 
-    @When("user clicks search button")
+    @When("user can clicks search button")
     public void user_clicks_search_button() {
         BrowserUtils.waitForVisibility(searchAndFilterPage.searchButton, 5);
         searchAndFilterPage.searchButton.click();
@@ -116,7 +117,7 @@ public class SearchAndFilterStepDef {
 
     @When("user clicks type box")
     public void user_clicks_type_box() {
-        BrowserUtils.waitForVisibility(searchAndFilterPage.typeBox, 5);
+        BrowserUtils.waitForVisibility(searchAndFilterPage.typeBox, 10);
         searchAndFilterPage.typeBox.click();
     }
 
@@ -175,6 +176,13 @@ public class SearchAndFilterStepDef {
     @Given("user clicks reset button")
     public void userClicksResetButton() {
         searchAndFilterPage.resetButton.click();
+        BrowserUtils.waitFor(1);
 
+    }
+
+    @When("user double clicks on the search-filter box")
+    public void userDoubleClicksOnTheSearchFilterBox() {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.doubleClick(searchAndFilterPage.filterAndSearchButton).perform();
     }
 }
