@@ -1,5 +1,6 @@
 package com.crmly.step_def;
 
+import com.crmly.pages.Base;
 import com.crmly.pages.LoginPage;
 import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.ConfigurationReader;
@@ -16,9 +17,8 @@ import org.openqa.selenium.WebElement;
 import java.util.Collection;
 import java.util.List;
 
-public class LoginStepDef {
+public class LoginStepDef extends Base {
 
-    LoginPage loginPage = new LoginPage();
 
     @Given("browser is open")
     public void browser_is_open() {
@@ -51,6 +51,7 @@ public class LoginStepDef {
     public void go_to(String requestedUrl) {
         Driver.getDriver().get(ConfigurationReader.getProperty(requestedUrl));
     }
+
     @Given("Valid username {string}, password {string} information is entered and the sign In button is clicked.")
     public void valid_username_password_information_is_entered_and_the_sign_in_button_is_clicked(String mail, String pass) {
         loginPage.userMailTextBoxWrite(ConfigurationReader.getProperty(mail));
